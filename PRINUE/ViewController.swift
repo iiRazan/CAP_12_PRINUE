@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,3 +18,7 @@ class ViewController: UIViewController {
 
 }
 
+
+// MARK: - Login / Sign up / logout Views
+// MARK: - FireBase
+// MARK: -
