@@ -1,13 +1,13 @@
 //
-//  LoginView.swift
+//  SignUp.swift
 //  PRINUE
 //
-//  Created by Razan on 16/05/1443 AH.
+//  Created by Razan on 17/05/1443 AH.
 //
 
 import UIKit
 
-class LoginView: UIView {
+class SignUp: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,10 +17,9 @@ class LoginView: UIView {
         self.layer.cornerRadius = 20
         self.layer.shadowOffset = CGSize(width: -1, height: 1)
         self.layer.shadowRadius = 1
-        self.layer.shadowOpacity = 0.2
+        self.layer.shadowOpacity = 0.4
         
     }
-    
 
     /*
     // Only override draw() if you perform custom drawing.
