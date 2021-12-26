@@ -14,9 +14,7 @@ class SignUp_VC: UIViewController {
     @IBOutlet weak var lastNameTextFeild: UITextField!
     @IBOutlet weak var emailTextFeild: UITextField!
     @IBOutlet weak var PasswordTextFeild: UITextField!
-    
     @IBOutlet weak var signUpButton: UIButton!
-    
     @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
@@ -80,7 +78,10 @@ class SignUp_VC: UIViewController {
     
     
     func transitionToHome() {
+        let homeViewController = storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
         
+        view.window?.rootViewController = homeViewController
+        view.window?.makeKeyAndVisible()
     }
     
     
