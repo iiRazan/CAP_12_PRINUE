@@ -10,7 +10,7 @@ import FirebaseAuth
 
 
 class Login_VC: UIViewController {
-
+    
     @IBOutlet weak var loginPassword: UITextField!
     @IBOutlet weak var loginEmail: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -19,7 +19,7 @@ class Login_VC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-
+        
         // Do any additional setup after loading the view.
     }
     

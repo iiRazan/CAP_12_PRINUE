@@ -23,6 +23,21 @@
             </objects>
             <point key="canvasLocation" x="29" y="-652"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="JfG-T6-wB3">
+            <objects>
+                <viewController id="eJv-np-weC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zal-0q-Nly">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="pMq-vp-1Ua"/>
+                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cri-4l-p4u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3222" y="-1011"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -227,6 +242,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Login">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="loginPressed:" destination="uDx-ky-o0Z" eventType="touchUpInside" id="beR-Im-DMh"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4Sy-mz-rDH">
                                 <rect key="frame" x="20" y="387.5" width="374" height="403"/>
@@ -467,6 +485,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

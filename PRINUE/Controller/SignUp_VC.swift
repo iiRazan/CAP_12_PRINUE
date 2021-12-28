@@ -6,8 +6,10 @@
 //
 
 import UIKit
-import FirebaseAuth
 import Firebase
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class SignUp_VC: UIViewController {
     @IBOutlet weak var fistNameTextFeild: UITextField!
@@ -17,6 +19,8 @@ class SignUp_VC: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
+    let db = Firestore.firestore()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpFields()
@@ -83,6 +87,11 @@ class SignUp_VC: UIViewController {
         view.window?.rootViewController = homeViewController
         view.window?.makeKeyAndVisible()
     }
+    
+    @IBAction func loginPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
     
 }
