@@ -7,7 +7,8 @@
 
 import UIKit
 import FirebaseAuth
-import Firebase
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class SignUp_VC: UIViewController {
     @IBOutlet weak var fistNameTextFeild: UITextField!
@@ -16,6 +17,8 @@ class SignUp_VC: UIViewController {
     @IBOutlet weak var PasswordTextFeild: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
+    
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,12 +59,30 @@ class SignUp_VC: UIViewController {
                     self.showError("* Error creating user")
                 } else {
                     
-                    let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["firstName": FistName, "lastName": LastName, "uid": result!.user.uid ]) { (error) in
-                        if error != nil {
-                            self.showError("* Can't save user data")
+                    //                    let db = Firestore.firestore()
+                    //                    db.collection("users").addDocument(data: ["firstName": FistName, "lastName": LastName, "uid": result!.user.uid ]) { (error) in
+                    //                        if error != nil {
+                    //                            self.showError("* Can't save user data")
+                    //                        }
+                    //                    }
+                    
+                    // obj
+                    let user = User(uid: result!.user.uid, firstname: FistName, lastname: LastName, email: result!.user.email!, isAdmin: false, orders: [])
+                    
+                    do {
+                        let docRef = self.db.collection("users").document(result!.user.uid)
+                        try docRef.setData(from: user)
+                    }catch {
+                        print(error.localizedDescription)
+                        
+                    }
+                    self.db.collection("users").document("7NN8s3HlLgP2spPI6XOXodqvAZ83").getDocument { doc, err in
+                        if (err == nil) {
+                            _ = try! doc?.data(as: User.self)
                         }
                     }
+                    
+                    
                     
                     self.transitionToHome()
                 }
@@ -83,6 +104,13 @@ class SignUp_VC: UIViewController {
         view.window?.rootViewController = homeViewController
         view.window?.makeKeyAndVisible()
     }
+    
+    @IBAction func LoginPressed(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        
+        
+    }
+    
     
     
 }

@@ -41,7 +41,7 @@
         <!--LoginVC-->
         <scene sceneID="zGS-FF-ETA">
             <objects>
-                <viewController id="vus-62-oqS" customClass="Login_VC" customModule="PRINUE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" id="vus-62-oqS" customClass="Login_VC" customModule="PRINUE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h85-vw-7In">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -227,6 +227,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Login">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="LoginPressed:" destination="uDx-ky-o0Z" eventType="touchUpInside" id="6gj-bL-YlQ"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4Sy-mz-rDH">
                                 <rect key="frame" x="20" y="387.5" width="374" height="403"/>
@@ -333,6 +336,7 @@
                                                     <constraint firstItem="ZhY-iD-xo6" firstAttribute="leading" secondItem="O5D-qf-ss5" secondAttribute="leading" id="HmQ-Wv-qhp"/>
                                                     <constraint firstItem="dMa-mF-Occ" firstAttribute="top" secondItem="x51-zK-aQH" secondAttribute="bottom" constant="7" id="I4D-U4-evK"/>
                                                     <constraint firstItem="2b0-LH-dOh" firstAttribute="top" secondItem="O5D-qf-ss5" secondAttribute="bottom" constant="8" symbolic="YES" id="PsQ-xi-QYY"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rzX-Nf-HD1" secondAttribute="trailing" constant="20" symbolic="YES" id="Rry-Go-tLg"/>
                                                     <constraint firstItem="rzX-Nf-HD1" firstAttribute="top" secondItem="pF6-Ch-2zK" secondAttribute="top" constant="24" id="S1O-3H-avR"/>
                                                     <constraint firstItem="rzX-Nf-HD1" firstAttribute="leading" secondItem="2b0-LH-dOh" secondAttribute="leading" id="S6O-w8-Tpk"/>
                                                     <constraint firstItem="ZhY-iD-xo6" firstAttribute="top" secondItem="dMa-mF-Occ" secondAttribute="bottom" constant="8" symbolic="YES" id="SZY-fz-imh"/>
