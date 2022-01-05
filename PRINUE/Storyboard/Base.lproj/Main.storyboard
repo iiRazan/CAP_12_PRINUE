@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nRA-kn-YsG">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -114,11 +114,12 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="pX6-gJ-YpB">
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DL8-MU-QaT">
-                                <rect key="frame" x="27" y="44" width="47" height="31"/>
+                                <rect key="frame" x="27" y="59" width="47" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.078431372550000003" green="0.27450980390000002" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
@@ -127,8 +128,8 @@
                                     <action selector="OnTappedMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Zt-Ed-wBw"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1G-lM-ACK">
-                                <rect key="frame" x="0.0" y="0.0" width="268" height="896"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L1G-lM-ACK">
+                                <rect key="frame" x="-318" y="0.0" width="310" height="896"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L2T-XO-lum">
                                         <rect key="frame" x="0.0" y="-40" width="260" height="936"/>
@@ -151,7 +152,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Hs5-CC-hbR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="53" id="DEJ-I6-dgH"/>
                             <constraint firstAttribute="bottom" secondItem="L1G-lM-ACK" secondAttribute="bottom" id="G3n-qH-CGa"/>
@@ -583,10 +584,10 @@
             </objects>
             <point key="canvasLocation" x="1528" y="66"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Login Navigation Controller-->
         <scene sceneID="6Pd-Tp-0L3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nRA-kn-YsG" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="nRA-kn-YsG" customClass="LoginNavigationController" customModule="PRINUE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="a5o-8Q-hzW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -605,7 +606,6 @@
         <!--Side MenuVC-->
         <scene sceneID="Ieo-EF-rwc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HsQ-hq-Qk3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="g6x-px-gQh" customClass="SideMenu_VC" customModule="PRINUE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZG6-hO-MHG">
                         <rect key="frame" x="0.0" y="0.0" width="260" height="936"/>
@@ -623,7 +623,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dear" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hff-bS-X6Z">
                                         <rect key="frame" x="62" y="195" width="37" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O64-Yx-lZY">
@@ -632,11 +632,11 @@
                                             <constraint firstAttribute="width" constant="179" id="enP-Qp-lnQ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.94117647058823528" green="0.93333333333333335" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.70196078429999997" green="0.87843137250000003" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="304" id="2Rg-fr-Vhl"/>
                                     <constraint firstItem="dIY-qt-0P2" firstAttribute="top" secondItem="86i-3W-wXE" secondAttribute="top" constant="141" id="HuE-ah-Xwn"/>
@@ -677,6 +677,9 @@
                                 <color key="tintColor" red="1" green="0.40000000000000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="rectangle.portrait.and.arrow.right" catalog="system" title="Logout"/>
+                                <connections>
+                                    <action selector="onTappedLogout:" destination="g6x-px-gQh" eventType="touchUpInside" id="Ch7-Zr-PbN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43N-eY-aEx">
                                 <rect key="frame" x="186" y="843" width="47" height="31"/>
@@ -685,6 +688,7 @@
                                 <buttonConfiguration key="configuration" style="plain" image="switch.2" catalog="system" title=""/>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="kzd-Fw-fcJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="86i-3W-wXE" secondAttribute="trailing" constant="-8" id="DNA-tt-ci9"/>
@@ -706,9 +710,11 @@
                     </view>
                     <connections>
                         <outlet property="BGView" destination="86i-3W-wXE" id="a2a-zJ-dXH"/>
+                        <outlet property="logoutBottun" destination="Bew-cm-mKb" id="Alg-1n-3w0"/>
                         <outlet property="userNameGreetingLBL" destination="O64-Yx-lZY" id="uyB-Tx-w7U"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HsQ-hq-Qk3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-733.33333333333337" y="775.44642857142856"/>
         </scene>
@@ -720,9 +726,6 @@
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="108"/>
         <image name="switch.2" catalog="system" width="128" height="109"/>
-        <systemColor name="secondarySystemGroupedBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

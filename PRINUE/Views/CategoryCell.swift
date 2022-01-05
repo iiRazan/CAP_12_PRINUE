@@ -13,5 +13,11 @@ class CategoryCell: UICollectionViewCell {
     @IBOutlet weak var categoryTitle : UILabel!
     @IBOutlet weak var comingSoonLabel : UILabel!
     
-    
+//    let arrCategory: [UIImage] = [
+//    
+//        UIImage(named: "cups")!,
+//        UIImage(named: "clothes")!,
+//        UIImage(named: "stickers")!,
+//        UIImage(named: "boxes")!
+//    ]
 }

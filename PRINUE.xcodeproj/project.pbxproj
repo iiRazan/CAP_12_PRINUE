@@ -43,6 +43,7 @@
 		A5CF720027787CD900952CD1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF71FF27787CD900952CD1 /* HomeViewController.swift */; };
 		A5CF720227787EA800952CD1 /* Login_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF720127787EA800952CD1 /* Login_VC.swift */; };
 		A5DAD7C927748CA8007E6DFB /* SignUp_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DAD7C827748CA8007E6DFB /* SignUp_VC.swift */; };
+		A5E9964127860D3400EB9B3F /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9964027860D3400EB9B3F /* LoginNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		A5CF71FF27787CD900952CD1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A5CF720127787EA800952CD1 /* Login_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_VC.swift; sourceTree = "<group>"; };
 		A5DAD7C827748CA8007E6DFB /* SignUp_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp_VC.swift; sourceTree = "<group>"; };
+		A5E9964027860D3400EB9B3F /* LoginNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			children = (
 				A514A1AB277D9BC3001273C3 /* CategoryCell.swift */,
 				A517097D27821815003E8C74 /* CategoryLayout.swift */,
+				A5E9964027860D3400EB9B3F /* LoginNavigationController.swift */,
 				A54AA89127710B6500B2AD29 /* LoginView.swift */,
 				A5047E242771BEB40010F0E7 /* SignUp.swift */,
 				A5C7549D277B68BA0080A78C /* Utilities.swift */,
@@ -384,6 +387,7 @@
 				A5CF720027787CD900952CD1 /* HomeViewController.swift in Sources */,
 				A5BF9C5C276F9D1300D46E04 /* PRINUE.xcdatamodeld in Sources */,
 				A5C754A3277B6B120080A78C /* Product.swift in Sources */,
+				A5E9964127860D3400EB9B3F /* LoginNavigationController.swift in Sources */,
 				A5CF720227787EA800952CD1 /* Login_VC.swift in Sources */,
 				A52BEDD02783151D004672AD /* SideMenu_VC.swift in Sources */,
 				A5DAD7C927748CA8007E6DFB /* SignUp_VC.swift in Sources */,
