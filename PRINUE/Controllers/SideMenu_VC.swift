@@ -6,22 +6,20 @@
 //
 
 import UIKit
+import FirebaseAuth
 
-protocol SideMenuViewControllerDelegate {
-    func hideSideMenuView()
-}
+
 class SideMenu_VC: UIViewController {
     
     
-    var delegate: SideMenuViewControllerDelegate?
     @IBOutlet weak var userNameGreetingLBL: NSLayoutConstraint!
     @IBOutlet weak var BGView: UIView!
+    
+    @IBOutlet weak var logoutBottun: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSideMenu()
-
-        // Do any additional setup after loading the view.
     }
     
     private func setUpSideMenu() {
@@ -29,12 +27,34 @@ class SideMenu_VC: UIViewController {
         BGView.clipsToBounds = false
        BGView.layer.shadowOffset = CGSize (width: -1, height: 1)
         BGView.layer.shadowRadius = 1
-        BGView.layer.shadowOpacity = 0.25
+        BGView.layer.shadowOpacity = 0.4
     }
     
     @IBAction func profileButton(_ sender: Any) {
-        self.delegate?.hideSideMenuView()
+       
     }
+    
+    
+    @IBAction func onTappedLogout(_ sender: Any) {
+        do
+        {
+            try Auth.auth().signOut()
+//            let loginView = LoginView()
+            let transfer =  UIApplication.shared.windows.first
+            let storybord : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc : UIViewController = storybord.instantiateViewController(withIdentifier: "LoginNavigationController") as! LoginNavigationController
+            transfer?.makeKeyAndVisible()
+            transfer?.rootViewController = vc
+        }
+        catch let err
+        {
+            print(err)
+        }
+         
+        }
+
+    
+    
     
 
 }

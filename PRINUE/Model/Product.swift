@@ -15,5 +15,4 @@ struct Product : Codable {
     let price : Float
     let quantity : Int
     let Size : String
-    
 }
