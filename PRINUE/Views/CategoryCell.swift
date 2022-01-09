@@ -13,11 +13,16 @@ class CategoryCell: UICollectionViewCell {
     @IBOutlet weak var categoryTitle : UILabel!
     @IBOutlet weak var comingSoonLabel : UILabel!
     
-//    let arrCategory: [UIImage] = [
-//    
-//        UIImage(named: "cups")!,
-//        UIImage(named: "clothes")!,
-//        UIImage(named: "stickers")!,
-//        UIImage(named: "boxes")!
-//    ]
+//    struct Category {
+//        let categoryImage : UIImage
+//        let categoryTitle : String
+//        let comingSoon : String?
+//    }
+    
+    func setUpCategoryCell(categoryImg:UIImage, categoryType:String, comingSoon:String ) {
+        categoryTitle.text = categoryType
+        comingSoonLabel.text = comingSoon
+        categoryImage.image = categoryImg
+        
+    }
 }

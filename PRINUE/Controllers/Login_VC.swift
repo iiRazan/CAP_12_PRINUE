@@ -20,6 +20,12 @@ class Login_VC: UIViewController {
         super.viewDidLoad()
         setUp()
 
+        let allProdcts = DataManager.getAllProduct(collectionName: "asdfs")
+        
+        for pro in allProdcts {
+            print (pro.Size)
+        }
+        
         // Do any additional setup after loading the view.
     }
     
