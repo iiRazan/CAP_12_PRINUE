@@ -16,3 +16,14 @@ struct Product : Codable {
     let quantity : Int
     let Size : String
 }
+
+
+// Display All Products
+
+
+// Query certain product using its ID
+
+
+// Search by product name
+
+
