@@ -10,7 +10,7 @@ import FirebaseStorage
 
 
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     @IBOutlet weak var menuViewBG: UIView!
@@ -52,12 +52,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
+    // MARK: Transformation functions
+    
     func moveToContact() {
         let vc = storyboard?.instantiateViewController(identifier: "ContactID") as! Contact_VC
-        //else { return }
-//        vc.modalTransitionStyle = .flipHorizontal
-//        vc.modalPresentationStyle = .automatic
-        //show(vc, sender: self)
+        self.navigationController?.show(vc, sender: self)
+    }
+    
+    func moveToOrders() {
+        let vc = storyboard?.instantiateViewController(identifier: "YourOrderID") as! YourOrder_VC
+        self.navigationController?.show(vc, sender: self)
+    }
+    
+    func moveToProfile() {
+        let vc = storyboard?.instantiateViewController(identifier: "ProfileID") as! Profile_VC
         self.navigationController?.show(vc, sender: self)
         
     }
@@ -92,14 +100,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func setUpSideMenu() {
-       
+
         let menuButton = UIBarButtonItem(image: UIImage(systemName: "list.bullet"),
                                          style: .plain,
                                          target: self,
                                          action: #selector(OnTappedMenu))
-        
-        
-//        self.navigationController?.navigationBar.topItem?.setLeftBarButton(menuButton, animated: true)
+    
         self.navigationController?.navigationBar.topItem?.leftBarButtonItem = menuButton
         
         sideMenuView.transform = CGAffineTransform(translationX: -(sideMenuView.frame.width), y: 0)
@@ -137,17 +143,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 }
 
 
-extension HomeViewController : SideMenuDelegate {
+extension Home_VC : SideMenuDelegate {
     
     func didSelectMenu(option: SideMenuOption) {
         
         hideSideMenu()
-        //Thread.sleep(forTimeInterval: 3)
         switch option {
         case .Profile:
-            print("Profile Selected")
+            moveToProfile()
         case .Orders:
-            print("Contacts Selected")
+            moveToOrders()
         case .Contact:
             moveToContact()
         }

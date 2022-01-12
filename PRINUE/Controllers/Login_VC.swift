@@ -46,7 +46,7 @@ class Login_VC: UIViewController {
             }
             else {
                 
-                let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
+                let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeNavigationID") as! HomeNavigation
                 
                 self.view.window?.rootViewController = homeViewController
                 self.view.window?.makeKeyAndVisible()

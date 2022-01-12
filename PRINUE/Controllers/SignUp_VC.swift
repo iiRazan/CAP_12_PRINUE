@@ -99,10 +99,10 @@ class SignUp_VC: UIViewController {
     
     
     func transitionToHome() {
-        let homeViewController = storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
+        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeNavigationID") as! HomeNavigation
         
-        view.window?.rootViewController = homeViewController
-        view.window?.makeKeyAndVisible()
+        self.view.window?.rootViewController = homeViewController
+        self.view.window?.makeKeyAndVisible()
     }
     
     @IBAction func LoginPressed(_ sender: Any) {
