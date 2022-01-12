@@ -14,55 +14,60 @@ import FirebaseDatabase
 class Profile_VC: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var profilePhoto: UIImageView!
-    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var avatarBG: UIImageView!
+    @IBOutlet weak var fullNameLbl: UILabel!
+    @IBOutlet weak var firstNameUpdateTextfield: UITextField!
+    @IBOutlet weak var lastNameUpdateTextfield: UITextField!
+    @IBOutlet weak var emailUpdateTextfield: UITextField!
     
-    var image : UIImage? = nil
+    lazy var image : UIImage? = nil
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpAvatar()
+//        setUpAvatar()
         
     }
     
-    func setUpAvatar() {
-        profilePhoto.layer.cornerRadius = 60
-        avatar.layer.cornerRadius = 65
-        profilePhoto.clipsToBounds = true
-        profilePhoto.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker))
-        profilePhoto.addGestureRecognizer(tapGesture)
-        
-    }
-    
-    @objc func presentPicker() {
-        let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        picker.delegate = self
-        picker.allowsEditing = true
-        self.present(picker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let imageSelected = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-                image = imageSelected
-                profilePhoto.image = imageSelected
-            }
-            if let imageOriginal = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                image = imageOriginal
-                profilePhoto.image = imageOriginal
-            }
-            picker.dismiss(animated: true, completion: nil)
-    
-        }
+//    func setUpAvatar() {
+//        profilePhoto.layer.cornerRadius = 60
+//        avatarBG.layer.cornerRadius = 65
+//        profilePhoto.clipsToBounds = true
+//        profilePhoto.isUserInteractionEnabled = true
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker))
+//        profilePhoto.addGestureRecognizer(tapGesture)
+//
+//    }
+//
+//    @objc func presentPicker() {
+//        let picker = UIImagePickerController()
+//        picker.sourceType = .photoLibrary
+//        picker.delegate = self
+//        picker.allowsEditing = true
+//        self.present(picker, animated: true, completion: nil)
+//    }
+//
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//            if let imageSelected = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+//                image = imageSelected
+//                profilePhoto.image = imageSelected
+//            }
+//            if let imageOriginal = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+//                image = imageOriginal
+//                profilePhoto.image = imageOriginal
+//            }
+//            picker.dismiss(animated: true, completion: nil)
+//
+//        }
     
     func updateOnTapped() {
         
-        guard let imageSelected = self.image else {
-            print("No Photo")
-            return
-        }
-        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else { return }
-        
+//        guard let imageSelected = self.image else {
+//            print("No Photo")
+//            return
+//        }
+//        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else { return }
+//
 //        if let authData = authDataResult {
 //            print(authData.user.uid)
 //            let dirt: Dictionary<String, Any> = [
@@ -70,10 +75,10 @@ class Profile_VC: UIViewController,UIImagePickerControllerDelegate, UINavigation
 //                "email": authData.user.email,
 //                "ProfileImageUrl": ""
 //            ]
-            
-            let storageRef = Storage.storage().reference(forURL: "gs://prinue-95b91.appspot.com")
+//
+//            let storageRef = Storage.storage().reference(forURL: "gs://prinue-95b91.appspot.com")
 //            let storageProfileRef = storageRef.child("Profile").child(authData.user.uid)
-            
+
         }
         
        
