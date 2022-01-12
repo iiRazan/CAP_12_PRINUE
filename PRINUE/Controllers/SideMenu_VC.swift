@@ -42,21 +42,17 @@ class SideMenu_VC: UIViewController {
     }
     
     @IBAction func profileButton(_ sender: Any) {
+        delegate.didSelectMenu(option: .Profile)
        
     }
     
     @IBAction func contactButton(_ sender: Any) {
-        
         delegate.didSelectMenu(option: .Contact)
-//        _ = storyboard?.instantiateViewController(withIdentifier: "ContactID") as! Contact_VC
-//        guard let vc = storyboard?.instantiateViewController(identifier: "ContactID") else { return }
-//        vc.modalTransitionStyle = .flipHorizontal
-//        vc.modalPresentationStyle = .currentContext
-//        show(vc, sender: self)
-       
+        
     }
     
     @IBAction func yourOrderButton(_ sender: Any) {
+        delegate.didSelectMenu(option: .Orders)
         
     }
     
