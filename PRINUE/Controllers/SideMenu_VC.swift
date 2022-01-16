@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 
 enum SideMenuOption: Int {
@@ -36,14 +37,14 @@ class SideMenu_VC: UIViewController {
     private func setUpSideMenu() {
         BGView.layer.cornerRadius = 40
         BGView.clipsToBounds = false
-       BGView.layer.shadowOffset = CGSize (width: -1, height: 1)
+        BGView.layer.shadowOffset = CGSize (width: -1, height: 1)
         BGView.layer.shadowRadius = 1
         BGView.layer.shadowOpacity = 0.4
     }
     
     @IBAction func profileButton(_ sender: Any) {
         delegate.didSelectMenu(option: .Profile)
-       
+        
     }
     
     @IBAction func contactButton(_ sender: Any) {
@@ -61,7 +62,7 @@ class SideMenu_VC: UIViewController {
         do
         {
             try Auth.auth().signOut()
-//            let loginView = LoginView()
+            //            let loginView = LoginView()
             let transfer =  UIApplication.shared.windows.first
             let storybord : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc : UIViewController = storybord.instantiateViewController(withIdentifier: "LoginNavigationController") as! LoginNavigationController
@@ -73,11 +74,26 @@ class SideMenu_VC: UIViewController {
         {
             print(err)
         }
-         
-        }
-
+        
+    }
+    
+//    func checkIfUserLoggedIn() {
+//        if Auth.auth().currentUser?.uid == nil {
+//            performSelector(inBackground: #selector(self.onTappedLogout), with: nil)
+//        } else {
+//            let uid = Auth.auth().currentUser?.uid
+//            Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value) { (snapshot) in
+//                print(snapshot)
+//            } withCancel: { err in
+//                print(err)
+//            }
+//
+//        }
+//        
+//    }
     
     
     
-
+    
+    
 }

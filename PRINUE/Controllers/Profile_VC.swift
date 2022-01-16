@@ -19,46 +19,48 @@ class Profile_VC: UIViewController,UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var firstNameUpdateTextfield: UITextField!
     @IBOutlet weak var lastNameUpdateTextfield: UITextField!
     @IBOutlet weak var emailUpdateTextfield: UITextField!
+    @IBOutlet weak var updateButton: UIButton!
     
     lazy var image : UIImage? = nil
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setUpAvatar()
+      
+        setUpAvatar()
         
     }
     
-//    func setUpAvatar() {
-//        profilePhoto.layer.cornerRadius = 60
-//        avatarBG.layer.cornerRadius = 65
-//        profilePhoto.clipsToBounds = true
-//        profilePhoto.isUserInteractionEnabled = true
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker))
-//        profilePhoto.addGestureRecognizer(tapGesture)
-//
-//    }
-//
-//    @objc func presentPicker() {
-//        let picker = UIImagePickerController()
-//        picker.sourceType = .photoLibrary
-//        picker.delegate = self
-//        picker.allowsEditing = true
-//        self.present(picker, animated: true, completion: nil)
-//    }
-//
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//            if let imageSelected = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-//                image = imageSelected
-//                profilePhoto.image = imageSelected
-//            }
-//            if let imageOriginal = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-//                image = imageOriginal
-//                profilePhoto.image = imageOriginal
-//            }
-//            picker.dismiss(animated: true, completion: nil)
-//
-//        }
+    func setUpAvatar() {
+        profilePhoto.layer.cornerRadius = 60
+        avatarBG.layer.cornerRadius = 65
+        profilePhoto.clipsToBounds = true
+        profilePhoto.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker))
+        profilePhoto.addGestureRecognizer(tapGesture)
+
+    }
+
+    @objc func presentPicker() {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        picker.allowsEditing = true
+        self.present(picker, animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let imageSelected = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                image = imageSelected
+                profilePhoto.image = imageSelected
+            }
+            if let imageOriginal = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                image = imageOriginal
+                profilePhoto.image = imageOriginal
+            }
+            picker.dismiss(animated: true, completion: nil)
+
+        }
     
     func updateOnTapped() {
         

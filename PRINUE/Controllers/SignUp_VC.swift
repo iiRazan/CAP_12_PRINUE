@@ -48,12 +48,8 @@ class SignUp_VC: UIViewController {
     
     @IBAction func signUpTapped(_ sender: Any) {
         
-        guard let imageSelected = self.image else {
-            print("No Photo")
-            return
-        }
-        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else { return }
-
+        let defaults = UserDefaults.standard
+        
         let error = validateFields()
         if error != nil {
             showError(error!)
@@ -63,30 +59,40 @@ class SignUp_VC: UIViewController {
             let LastName = lastNameTextFeild.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let Email = emailTextFeild.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let Password = PasswordTextFeild.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let profilePic = profilePicSignup.image
+//            let profilePicUrl = profilePicSignup.image.
             
             Auth.auth().createUser(withEmail: Email, password: Password) { result, err in
                 if err != nil {
                     self.showError("* Error creating user")
                 } else {
                     
-                    let user = User(uid: result!.user.uid, firstname: FistName, lastname: LastName, email: result!.user.email!, isAdmin: false, orders: [])
+                    let user = User(uid: result!.user.uid, firstname: FistName, lastname: LastName, email: result!.user.email!, profilePic: "", isAdmin: false, orders: [])
+                    
+                    defaults.set(true, forKey: "isUserSignedIn")
+                    
+//                    self.uploadProfilePhoto(profilePic!) { url in
+//                        
+//                    }
                     
                     do {
                         let docRef = self.db.collection("users").document(result!.user.uid)
                         try docRef.setData(from: user)
-
-                        let storageRef = Storage.storage().reference(forURL: "gs://prinue-95b91.appspot.com")
-                        _ = storageRef.child("Profile").child(result!.user.uid)
                         
-                        let metadata = StorageMetadata()
-                        metadata.contentType = "image/jpg"
-                        storageRef.putData(imageData, metadata: metadata) { (storageMetaData, error) in
-                            if error != nil {
-                                print(error?.localizedDescription)
-                                return
-                            }
-                        }
-                        }catch {
+                       
+                        //                        let storageRef = Storage.storage().reference(forURL: "gs://prinue-95b91.appspot.com")
+                        //                        let userStorageRef = storageRef.child("Profile").child(result!.user.uid)
+                        //
+                        //                        let metadata = StorageMetadata()
+                        //                        metadata.contentType = "image/jpeg"
+                        //                        userStorageRef.putData(imageData, metadata: metadata) { (storageMetaData, error) in
+                        //                            if error != nil {
+                        //                                print(error?.localizedDescription)
+                        //                                return
+                        //                            }
+                        //
+                        //                        }
+                    }catch {
                         print(error.localizedDescription)
                         
                     }
@@ -105,6 +111,40 @@ class SignUp_VC: UIViewController {
         }
         
     }
+    
+    
+    func uploadProfilePhoto(_ image: UIImage, _ complition: @escaping ((_ url: String?)-> ())) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let storageRef = Storage.storage().reference().child("user/\(uid)")
+        
+        guard let imageSelected = self.image else {
+            print("No Photo")
+            return
+        }
+        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else { return }
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        
+        
+        
+        storageRef.putData(imageData, metadata: metadata) { metadata, error in
+            if error == nil {
+                print("Faild to upload profile image")
+            }
+            storageRef.downloadURL { url, error in
+                
+                guard let url = url, error == nil else { return }
+                let urlString = url.absoluteString
+                print("Download URL: \(urlString)")
+                UserDefaults.standard.set(urlString, forKey: "url")
+                
+            }
+        }
+        
+        
+    }
+    
     
     func showError(_ massage:String) {
         errorLabel.text = massage
@@ -155,16 +195,16 @@ extension SignUp_VC: UIImagePickerControllerDelegate,UINavigationControllerDeleg
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let imageSelected = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-                image = imageSelected
-                profilePicSignup.image = imageSelected
-            }
-            if let imageOriginal = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                image = imageOriginal
-                profilePicSignup.image = imageOriginal
-            }
-            picker.dismiss(animated: true, completion: nil)
-    
+        if let imageSelected = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            image = imageSelected
+            profilePicSignup.image = imageSelected
         }
+        if let imageOriginal = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            image = imageOriginal
+            profilePicSignup.image = imageOriginal
+        }
+        picker.dismiss(animated: true, completion: nil)
+        
+    }
 }
 

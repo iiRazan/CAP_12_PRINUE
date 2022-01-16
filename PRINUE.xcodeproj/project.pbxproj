@@ -26,6 +26,8 @@
 		A5288520278ADA16004A1A9B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A528851F278ADA16004A1A9B /* FirebaseStorage */; };
 		A5288524278ADF39004A1A9B /* Contact_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5288523278ADF39004A1A9B /* Contact_VC.swift */; };
 		A5288526278AE004004A1A9B /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5288525278AE004004A1A9B /* ContactView.swift */; };
+		A529F0AD279371C500CCE1FD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A529F0AC279371C500CCE1FD /* Alamofire */; };
+		A529F0AF279371F600CCE1FD /* Cups_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0AE279371F600CCE1FD /* Cups_VC.swift */; };
 		A52BEDD02783151D004672AD /* SideMenu_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BEDCF2783151D004672AD /* SideMenu_VC.swift */; };
 		A54AA89227710B6500B2AD29 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54AA89127710B6500B2AD29 /* LoginView.swift */; };
 		A5BF9C52276F9D1300D46E04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF9C51276F9D1300D46E04 /* AppDelegate.swift */; };
@@ -79,6 +81,7 @@
 		A524E6FD278713F100A6BD70 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A5288523278ADF39004A1A9B /* Contact_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact_VC.swift; sourceTree = "<group>"; };
 		A5288525278AE004004A1A9B /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		A529F0AE279371F600CCE1FD /* Cups_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cups_VC.swift; sourceTree = "<group>"; };
 		A52BEDCF2783151D004672AD /* SideMenu_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu_VC.swift; sourceTree = "<group>"; };
 		A54AA89127710B6500B2AD29 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A5BF9C4E276F9D1300D46E04 /* PRINUE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PRINUE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +121,7 @@
 				A5288520278ADA16004A1A9B /* FirebaseStorage in Frameworks */,
 				A5288512278ADA16004A1A9B /* FirebaseAnalyticsSwift-Beta in Frameworks */,
 				A5288516278ADA16004A1A9B /* FirebaseCrashlytics in Frameworks */,
+				A529F0AD279371C500CCE1FD /* Alamofire in Frameworks */,
 				A5288514278ADA16004A1A9B /* FirebaseAuth in Frameworks */,
 				A528851E278ADA16004A1A9B /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				A5288510278ADA16004A1A9B /* FirebaseAnalytics in Frameworks */,
@@ -221,6 +225,7 @@
 				A514A1AD277DABEB001273C3 /* Category_VC.swift */,
 				A52BEDCF2783151D004672AD /* SideMenu_VC.swift */,
 				A51F752D278B627700735741 /* YourOrder_VC.swift */,
+				A529F0AE279371F600CCE1FD /* Cups_VC.swift */,
 				A5288523278ADF39004A1A9B /* Contact_VC.swift */,
 				A5BF9C51276F9D1300D46E04 /* AppDelegate.swift */,
 				A5BF9C53276F9D1300D46E04 /* SceneDelegate.swift */,
@@ -275,6 +280,7 @@
 				A528851B278ADA16004A1A9B /* FirebaseFirestore */,
 				A528851D278ADA16004A1A9B /* FirebaseFirestoreSwift-Beta */,
 				A528851F278ADA16004A1A9B /* FirebaseStorage */,
+				A529F0AC279371C500CCE1FD /* Alamofire */,
 			);
 			productName = PRINUE;
 			productReference = A5BF9C4E276F9D1300D46E04 /* PRINUE.app */;
@@ -350,6 +356,7 @@
 			mainGroup = A5BF9C45276F9D1300D46E04;
 			packageReferences = (
 				A528850E278ADA16004A1A9B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A529F0AB279371C500CCE1FD /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = A5BF9C4F276F9D1300D46E04 /* Products */;
 			projectDirPath = "";
@@ -414,6 +421,7 @@
 				A54AA89227710B6500B2AD29 /* LoginView.swift in Sources */,
 				A5E996452787015400EB9B3F /* ProfileView.swift in Sources */,
 				A514A1AE277DABEB001273C3 /* Category_VC.swift in Sources */,
+				A529F0AF279371F600CCE1FD /* Cups_VC.swift in Sources */,
 				A517097E27821815003E8C74 /* CategoryLayout.swift in Sources */,
 				A51F752C278B544A00735741 /* HomeNavigation.swift in Sources */,
 				A5E996432787011400EB9B3F /* Profile_VC.swift in Sources */,
@@ -776,6 +784,14 @@
 				kind = branch;
 			};
 		};
+		A529F0AB279371C500CCE1FD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -823,6 +839,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A528850E278ADA16004A1A9B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		A529F0AC279371C500CCE1FD /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A529F0AB279371C500CCE1FD /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 

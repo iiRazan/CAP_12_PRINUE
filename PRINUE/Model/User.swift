@@ -14,6 +14,7 @@ struct User : Codable {
     let firstname : String
     let lastname : String
     let email : String
+    let profilePic : String
     let isAdmin : Bool
 //    let orders : [Order]
     var orders : [DocumentReference]

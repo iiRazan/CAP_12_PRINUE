@@ -10,7 +10,7 @@ import FirebaseStorage
 
 
 
-class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
     @IBOutlet weak var menuViewBG: UIView!
@@ -40,6 +40,10 @@ class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         let category = arrCategory[indexPath.row]
         categoryCell.setUpCategoryCell(categoryImg: category.categoryImg, categoryType: category.categoryType, comingSoon: category.comingSoon)
         return categoryCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width , height: collectionView.frame.height)
     }
     
     
@@ -158,3 +162,8 @@ extension Home_VC : SideMenuDelegate {
         }
     }
 }
+//
+//extension Home_VC: UICollectionViewDelegateFlowLayout {
+//
+//}
+
