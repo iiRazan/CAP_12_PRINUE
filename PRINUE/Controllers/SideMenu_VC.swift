@@ -23,7 +23,7 @@ protocol SideMenuDelegate {
 class SideMenu_VC: UIViewController {
     
     
-    @IBOutlet weak var userNameGreetingLBL: NSLayoutConstraint!
+    @IBOutlet weak var userNameGreetingLBL: UILabel!
     @IBOutlet weak var BGView: UIView!
     @IBOutlet weak var logoutBottun: UIButton!
     
@@ -32,6 +32,14 @@ class SideMenu_VC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSideMenu()
+        let defualts = UserDefaults.standard
+        userNameGreetingLBL.text = "\(defualts.string(forKey: "userNameKey"))"
+        DataManager.getUserInfo {
+            
+        } onError: { error in
+           print(error?.localizedDescription)
+        }
+
     }
     
     private func setUpSideMenu() {
@@ -76,6 +84,8 @@ class SideMenu_VC: UIViewController {
         }
         
     }
+    
+    
     
 //    func checkIfUserLoggedIn() {
 //        if Auth.auth().currentUser?.uid == nil {

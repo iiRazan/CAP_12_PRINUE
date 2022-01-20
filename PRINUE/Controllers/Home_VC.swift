@@ -43,15 +43,16 @@ class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width , height: collectionView.frame.height)
+        return CGSize(width: categoryCollectionView.frame.width , height: categoryCollectionView.frame.height)
     }
     
     
     @objc func OnTappedMenu() {
         //print("show now")
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.5, options: .curveEaseOut) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseOut) {
             self.sideMenuView.transform = .identity
             self.menuViewBG.transform = .identity
+            self.categoryCollectionView.isHidden = true
             
         }
     }
@@ -96,11 +97,13 @@ class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.5, options: .curveEaseOut) { [self] in
             self.sideMenuView.transform = CGAffineTransform(translationX: -(self.sideMenuView.frame.width), y: 0)
             self.menuViewBG.transform = CGAffineTransform(translationX: -(self.menuViewBG.frame.width), y: 0)
+            self.categoryCollectionView.isHidden = false
         }
     }
     
     @objc func tapOutside(_ gesture: UIGestureRecognizer) {
         hideSideMenu()
+ 
     }
     
     func setUpSideMenu() {
@@ -162,8 +165,5 @@ extension Home_VC : SideMenuDelegate {
         }
     }
 }
-//
-//extension Home_VC: UICollectionViewDelegateFlowLayout {
-//
-//}
+
 

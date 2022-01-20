@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseStorage
+import FirebaseDatabase
 
 class SignUp_VC: UIViewController {
     @IBOutlet weak var fistNameTextFeild: UITextField!
@@ -60,7 +61,6 @@ class SignUp_VC: UIViewController {
             let Email = emailTextFeild.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let Password = PasswordTextFeild.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let profilePic = profilePicSignup.image
-//            let profilePicUrl = profilePicSignup.image.
             
             Auth.auth().createUser(withEmail: Email, password: Password) { result, err in
                 if err != nil {
@@ -71,28 +71,12 @@ class SignUp_VC: UIViewController {
                     
                     defaults.set(true, forKey: "isUserSignedIn")
                     
-//                    self.uploadProfilePhoto(profilePic!) { url in
-//                        
-//                    }
-                    
                     do {
                         let docRef = self.db.collection("users").document(result!.user.uid)
                         try docRef.setData(from: user)
                         
                        
-                        //                        let storageRef = Storage.storage().reference(forURL: "gs://prinue-95b91.appspot.com")
-                        //                        let userStorageRef = storageRef.child("Profile").child(result!.user.uid)
-                        //
-                        //                        let metadata = StorageMetadata()
-                        //                        metadata.contentType = "image/jpeg"
-                        //                        userStorageRef.putData(imageData, metadata: metadata) { (storageMetaData, error) in
-                        //                            if error != nil {
-                        //                                print(error?.localizedDescription)
-                        //                                return
-                        //                            }
-                        //
-                        //                        }
-                    }catch {
+                    } catch {
                         print(error.localizedDescription)
                         
                     }
@@ -103,7 +87,6 @@ class SignUp_VC: UIViewController {
                     }
                     
                     
-                    
                     self.transitionToHome()
                 }
             }
@@ -111,7 +94,6 @@ class SignUp_VC: UIViewController {
         }
         
     }
-    
     
     func uploadProfilePhoto(_ image: UIImage, _ complition: @escaping ((_ url: String?)-> ())) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
