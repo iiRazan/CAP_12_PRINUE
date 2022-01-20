@@ -64,22 +64,13 @@ class Profile_VC: UIViewController,UIImagePickerControllerDelegate, UINavigation
     
     func updateOnTapped() {
         
-//        guard let imageSelected = self.image else {
-//            print("No Photo")
-//            return
-//        }
-//        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else { return }
-//
-//        if let authData = authDataResult {
-//            print(authData.user.uid)
-//            let dirt: Dictionary<String, Any> = [
-//                "uid": authData.user.uid,
-//                "email": authData.user.email,
-//                "ProfileImageUrl": ""
-//            ]
-//
-//            let storageRef = Storage.storage().reference(forURL: "gs://prinue-95b91.appspot.com")
-//            let storageProfileRef = storageRef.child("Profile").child(authData.user.uid)
+        if let urlString = UserDefaults.standard.string(forKey: "url") {
+               guard let url = URL(string: urlString) else { return }
+               URLSession.shared.dataTask(with: url) { data, _, error in
+                   guard error != nil else { return }
+                   self.profilePhoto.image = UIImage(data: data!)
+               }.resume()
+           }
 
         }
         
