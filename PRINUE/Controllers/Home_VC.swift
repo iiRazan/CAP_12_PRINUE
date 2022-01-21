@@ -122,6 +122,7 @@ class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOutside))
         tapGesture.numberOfTapsRequired = 1
         view.addGestureRecognizer(tapGesture)
+        
     }
     
     

@@ -38,7 +38,21 @@ class Profile_VC: UIViewController,UIImagePickerControllerDelegate, UINavigation
         profilePhoto.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker))
         profilePhoto.addGestureRecognizer(tapGesture)
-
+        
+        let db = Firestore.firestore()
+        let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+        docRef.getDocument { snapshot, error in
+            let result = snapshot?.data() as! [String: Any]
+            let urlString = result["profilePic"] as! String
+            UserDefaults.standard.set(urlString, forKey: "url")
+            guard let url = URL(string: urlString) else { return }
+            URLSession.shared.dataTask(with: url) { data, _, error in
+                guard error != nil else { return }
+                DispatchQueue.main.async {
+                    self.profilePhoto.image = UIImage(data: data!)
+                }
+            }.resume()
+        }
     }
 
     @objc func presentPicker() {
@@ -61,6 +75,7 @@ class Profile_VC: UIViewController,UIImagePickerControllerDelegate, UINavigation
             picker.dismiss(animated: true, completion: nil)
 
         }
+    
     
     func updateOnTapped() {
         

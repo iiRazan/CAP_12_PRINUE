@@ -22,7 +22,7 @@ protocol SideMenuDelegate {
 
 class SideMenu_VC: UIViewController {
     
-    
+   
     @IBOutlet weak var userNameGreetingLBL: UILabel!
     @IBOutlet weak var BGView: UIView!
     @IBOutlet weak var logoutBottun: UIButton!

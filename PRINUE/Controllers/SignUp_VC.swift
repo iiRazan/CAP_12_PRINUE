@@ -29,6 +29,8 @@ class SignUp_VC: UIViewController {
         setUpFields()
         setUpProfilePic()
         
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -47,10 +49,11 @@ class SignUp_VC: UIViewController {
         errorLabel.alpha = 0
     }
     
+    //    var imageData = Data()
     @IBAction func signUpTapped(_ sender: Any) {
         
+       
         let defaults = UserDefaults.standard
-        
         let error = validateFields()
         if error != nil {
             showError(error!)
@@ -60,14 +63,18 @@ class SignUp_VC: UIViewController {
             let LastName = lastNameTextFeild.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let Email = emailTextFeild.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let Password = PasswordTextFeild.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let profilePic = profilePicSignup.image
+            //            let profilePic = profilePicSignup.image
+            //            var urlString = String()
+            
+            
             
             Auth.auth().createUser(withEmail: Email, password: Password) { result, err in
                 if err != nil {
                     self.showError("* Error creating user")
                 } else {
                     
-                    let user = User(uid: result!.user.uid, firstname: FistName, lastname: LastName, email: result!.user.email!, profilePic: "", isAdmin: false, orders: [])
+                    let imgUrl = UserDefaults.standard.string(forKey: "url")
+                    let user = User(uid: result!.user.uid, firstname: FistName, lastname: LastName, email: result!.user.email!, profilePic: imgUrl ?? "", isAdmin: false, orders: [])
                     
                     defaults.set(true, forKey: "isUserSignedIn")
                     
@@ -75,7 +82,7 @@ class SignUp_VC: UIViewController {
                         let docRef = self.db.collection("users").document(result!.user.uid)
                         try docRef.setData(from: user)
                         
-                       
+                        
                     } catch {
                         print(error.localizedDescription)
                         
@@ -118,10 +125,12 @@ class SignUp_VC: UIViewController {
                 
                 guard let url = url, error == nil else { return }
                 let urlString = url.absoluteString
+                complition(urlString)
                 print("Download URL: \(urlString)")
                 UserDefaults.standard.set(urlString, forKey: "url")
                 
             }
+            
         }
         
         
@@ -158,12 +167,29 @@ class SignUp_VC: UIViewController {
         profilePicSignup.addGestureRecognizer(tapGesture)
         
     }
-    
-    
-    
+    //    var urlString = String()
+    //
+    //    func uploadPhoto(data : Data) {
+    //        let uid = Auth.auth().currentUser?.uid
+    //        let storageRef = Storage.storage().reference().child("user")
+    //        storageRef.child("avatar.png")
+    //
+    //        storageRef.putData(data, metadata: nil) { metedata, Error in
+    //            storageRef.downloadURL { url, Error in
+    ////                self.urlString = url.absoluteString
+    //                print()
+    //            }
+    //        }
+    //        }
     
     
 }
+
+
+
+
+
+
 
 extension SignUp_VC: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
@@ -180,6 +206,11 @@ extension SignUp_VC: UIImagePickerControllerDelegate,UINavigationControllerDeleg
         if let imageSelected = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             image = imageSelected
             profilePicSignup.image = imageSelected
+            uploadProfilePhoto(imageSelected) { url in
+//                let docRef = self.db.collection("users").document(Auth.auth().currentUser!.uid)
+//                try? docRef.updateData(["profilePic": url])
+                
+            }
         }
         if let imageOriginal = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             image = imageOriginal

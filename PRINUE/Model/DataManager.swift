@@ -61,9 +61,10 @@ class DataManager {
                     defaults.set(firsname, forKey: "userNameKey")
                     
                     onSuccess()
+                    print("------------------------firsname------------------------")
                 }
             }) { (error) in
-                onError(error)
+                print(error)
             }
         }
     

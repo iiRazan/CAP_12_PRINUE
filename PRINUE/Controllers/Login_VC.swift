@@ -20,11 +20,12 @@ class Login_VC: UIViewController {
         super.viewDidLoad()
         setUp()
         
-        if Auth.auth().currentUser != nil {
+//        if Auth.auth().currentUser != nil {
+//            let HomeVC = storyboard?.instantiateViewController(withIdentifier: "HomeNavigationID") as! HomeNavigation
+//            HomeVC.modalPresentationStyle = .fullScreen
+//            present(HomeVC, animated: true, completion: nil)
             
-            guard (storyboard?.instantiateViewController(withIdentifier: "HomeNavigationID") as? HomeNavigation) != nil else { return  }
-            
-        }
+//        }
             //        let allProdcts = DataManager.getAllProduct(collectionName: "asdfs")
             //        for pro in allProdcts {
             //            print (pro.Size)
