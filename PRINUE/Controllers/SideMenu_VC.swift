@@ -32,10 +32,8 @@ class SideMenu_VC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSideMenu()
-        let defualts = UserDefaults.standard
-        userNameGreetingLBL.text = "\(defualts.string(forKey: "userNameKey"))"
-        DataManager.getUserInfo {
-            
+        DataManager.getUserInfo { user in
+            self.userNameGreetingLBL.text = "\(user.firstname ?? "") \(user.lastname ?? "")"
         } onError: { error in
            print(error?.localizedDescription)
         }

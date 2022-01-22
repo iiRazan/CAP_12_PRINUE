@@ -9,22 +9,9 @@ import UIKit
 import FirebaseAuth
 
 class ViewController: UIViewController {
-    
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         }
-    
-    
-    
-
 
 }
-
-// MARK: - Login / Sign up / logout Views
-// MARK: - FireBase
-// MARK: -

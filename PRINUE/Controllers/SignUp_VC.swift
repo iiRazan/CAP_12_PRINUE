@@ -52,7 +52,7 @@ class SignUp_VC: UIViewController {
     //    var imageData = Data()
     @IBAction func signUpTapped(_ sender: Any) {
         
-       
+        
         let defaults = UserDefaults.standard
         let error = validateFields()
         if error != nil {
@@ -207,8 +207,8 @@ extension SignUp_VC: UIImagePickerControllerDelegate,UINavigationControllerDeleg
             image = imageSelected
             profilePicSignup.image = imageSelected
             uploadProfilePhoto(imageSelected) { url in
-//                let docRef = self.db.collection("users").document(Auth.auth().currentUser!.uid)
-//                try? docRef.updateData(["profilePic": url])
+                //                let docRef = self.db.collection("users").document(Auth.auth().currentUser!.uid)
+                //                try? docRef.updateData(["profilePic": url])
                 
             }
         }

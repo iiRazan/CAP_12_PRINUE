@@ -912,6 +912,9 @@ irazan.m24@gmail.com</string>
                                 <buttonConfiguration key="configuration" style="filled" title="Update">
                                     <color key="baseBackgroundColor" red="1" green="0.40000000000000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="updateOnTapped" destination="Jbx-WO-wmJ" eventType="touchUpInside" id="0xD-Dp-ttF"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MVC-e8-gYD">
                                 <rect key="frame" x="140" y="261" width="130" height="130"/>

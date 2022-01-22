@@ -48,11 +48,10 @@ class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     
     @objc func OnTappedMenu() {
-        //print("show now")
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseOut) {
             self.sideMenuView.transform = .identity
             self.menuViewBG.transform = .identity
-            self.categoryCollectionView.isHidden = true
+//            self.categoryCollectionView.isHidden = true
             
         }
     }
@@ -85,11 +84,6 @@ class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         arrCategory.append(Category(categoryImg:UIImage(named:"clothes")!, categoryType: "CLOTHES", comingSoon: "Coming Soon"))
         arrCategory.append(Category(categoryImg:UIImage(named:"boxes")!, categoryType: "BOXES", comingSoon: "Coming Soon"))
         arrCategory.append(Category(categoryImg:UIImage(named:"stickers")!, categoryType: "STICKERS", comingSoon: "Coming Soon"))
-        //        sideMenuView.isHidden = true
-        //        menuViewBG.isHidden = true
-        //        setUpCollection()
-        
-        
     }
     
     
@@ -97,7 +91,7 @@ class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.5, options: .curveEaseOut) { [self] in
             self.sideMenuView.transform = CGAffineTransform(translationX: -(self.sideMenuView.frame.width), y: 0)
             self.menuViewBG.transform = CGAffineTransform(translationX: -(self.menuViewBG.frame.width), y: 0)
-            self.categoryCollectionView.isHidden = false
+//            self.categoryCollectionView.isHidden = false
         }
     }
     
@@ -128,18 +122,12 @@ class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     
     private func setUpCollection() {
-        //        categoryCollectionView.collectionViewLayout = layout
-        //        categoryCollectionView.contentInsetAdjustmentBehavior = .never
         categoryCollectionView.showsVerticalScrollIndicator = false
         categoryCollectionView.showsHorizontalScrollIndicator = false
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
         categoryCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         categoryCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        //        categoryCollectionView.
-        //        layout.minimumLineSpacing = 10.0
-        //        layout.minimumInteritemSpacing = 50.0
-        //        view.addSubview(categoryCollectionView)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

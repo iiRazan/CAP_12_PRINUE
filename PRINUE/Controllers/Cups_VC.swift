@@ -77,7 +77,7 @@ class Cups_VC: UIViewController, UIDocumentPickerDelegate, UITextViewDelegate,UI
     
     @IBAction func uploadFileOnTapped(_ sender: Any) {
         // TODO: SALIM
-        let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController(documentTypes: ["UTType.pdf"], in: .import)
+        let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .import)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = true
         documentPicker.modalPresentationStyle = UIModalPresentationStyle.formSheet

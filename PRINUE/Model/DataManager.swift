@@ -20,52 +20,34 @@ class DataManager {
         let prod2 = Product(productID: 34, category: "some", price: 34.0, quantity: 2, Size: "Small")
         
         return [prod1, prod2]
-        
-        
-        
-//        let db = Firestore.firestore()
-//
-//        // Get Data from FB
-//        db.collection(collectionName).getDocuments { snapshot, error in
-//            // Print something
-//        }
-
-        
-        
     }
     
     static func getProduct(pid: String) -> Product {
         
-        // fb
         let prod2 = Product(productID: 34, category: "some", price: 34.0, quantity: 2, Size: "Small")
         
         return prod2
         
     }
     
-    static func getUserInfo(onSuccess: @escaping () -> Void, onError: @escaping (_ error: Error?) -> Void) {
-            let ref = Database.database().reference()
-            let defaults = UserDefaults.standard
-            
-            guard let uid = Auth.auth().currentUser?.uid else {
-                print("User not found")
-                return
-            }
-            
-            ref.child("users").child(uid).observe(.value, with: { (snapshot) in
-                if let dictionary = snapshot.value as? [String : Any] {
-                    let email = dictionary["email"] as! String
-                    let firsname = dictionary["firsname"] as! String
+    static func getUserInfo(onSuccess: @escaping (_ user: User) -> Void, onError: @escaping (_ error: Error?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            print("User not found")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let docRef = db.collection("users").document(uid)
+        docRef.getDocument { snapshot, error in
+            let result = snapshot?.data() as! [String: Any]
+            do {
+                if let user = try snapshot?.data(as: User.self) {
+                    onSuccess(user)
                     
-                    defaults.set(email, forKey: "userEmailKey")
-                    defaults.set(firsname, forKey: "userNameKey")
-                    
-                    onSuccess()
-                    print("------------------------firsname------------------------")
                 }
-            }) { (error) in
-                print(error)
             }
+            catch { print (error.localizedDescription) }
+        }
         }
     
         
