@@ -20,49 +20,46 @@ class Login_VC: UIViewController {
         super.viewDidLoad()
         setUp()
         
-//        if Auth.auth().currentUser != nil {
-//            let HomeVC = storyboard?.instantiateViewController(withIdentifier: "HomeNavigationID") as! HomeNavigation
-//            HomeVC.modalPresentationStyle = .fullScreen
-//            present(HomeVC, animated: true, completion: nil)
-            
-//        }
-            //        let allProdcts = DataManager.getAllProduct(collectionName: "asdfs")
-            //        for pro in allProdcts {
-            //            print (pro.Size)
-            //        }
-            
-        }
+        //        if Auth.auth().currentUser != nil {
+        //            let HomeVC = storyboard?.instantiateViewController(withIdentifier: "HomeNavigationID") as! HomeNavigation
+        //            HomeVC.modalPresentationStyle = .fullScreen
+        //            present(HomeVC, animated: true, completion: nil)
+        //            
+        //        }
         
-        func setUp() {
-            loginErrorLBL.alpha = 0
-        }
         
-      @IBAction func loginTapped(_ sender: Any) {
+    }
+    
+    func setUp() {
+        loginErrorLBL.alpha = 0
+    }
+    
+    @IBAction func loginTapped(_ sender: Any) {
+        
+        let defaults = UserDefaults.standard
+        let passowrd = loginPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let email = loginEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        Auth.auth().signIn(withEmail: email, password: passowrd) { result, error in
             
-          let defaults = UserDefaults.standard
-            let passowrd = loginPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = loginEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            Auth.auth().signIn(withEmail: email, password: passowrd) { result, error in
-                
-                if error != nil {
-                    self.loginErrorLBL.text = error!.localizedDescription
-                    self.loginErrorLBL.alpha = 1
-                }
-                else {
-                    
-                    
-                    let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeNavigationID") as! HomeNavigation
-                    
-                    defaults.set(true, forKey: "isUserSignedIn")
-                    self.view.window?.rootViewController = homeViewController
-                    self.view.window?.makeKeyAndVisible()
-                    
-                }
+            if error != nil {
+                self.loginErrorLBL.text = error!.localizedDescription
+                self.loginErrorLBL.alpha = 1
             }
-            
+            else {
+                
+                
+                let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeNavigationID") as! HomeNavigation
+                
+                defaults.set(true, forKey: "isUserSignedIn")
+                self.view.window?.rootViewController = homeViewController
+                self.view.window?.makeKeyAndVisible()
+                
+            }
         }
         
-        
+    }
+    
+    
 }
 

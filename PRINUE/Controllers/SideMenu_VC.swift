@@ -22,10 +22,11 @@ protocol SideMenuDelegate {
 
 class SideMenu_VC: UIViewController {
     
-   
+    
     @IBOutlet weak var userNameGreetingLBL: UILabel!
     @IBOutlet weak var BGView: UIView!
     @IBOutlet weak var logoutBottun: UIButton!
+    
     
     var delegate: SideMenuDelegate!
     
@@ -35,10 +36,11 @@ class SideMenu_VC: UIViewController {
         DataManager.getUserInfo { user in
             self.userNameGreetingLBL.text = "\(user.firstname ?? "") \(user.lastname ?? "")"
         } onError: { error in
-           print(error?.localizedDescription)
+            print(error?.localizedDescription)
         }
-
+        
     }
+    
     
     private func setUpSideMenu() {
         BGView.layer.cornerRadius = 40
@@ -82,26 +84,5 @@ class SideMenu_VC: UIViewController {
         }
         
     }
-    
-    
-    
-//    func checkIfUserLoggedIn() {
-//        if Auth.auth().currentUser?.uid == nil {
-//            performSelector(inBackground: #selector(self.onTappedLogout), with: nil)
-//        } else {
-//            let uid = Auth.auth().currentUser?.uid
-//            Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value) { (snapshot) in
-//                print(snapshot)
-//            } withCancel: { err in
-//                print(err)
-//            }
-//
-//        }
-//        
-//    }
-    
-    
-    
-    
     
 }

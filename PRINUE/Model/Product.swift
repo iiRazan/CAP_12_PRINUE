@@ -18,12 +18,4 @@ struct Product : Codable {
 }
 
 
-// Display All Products
-
-
-// Query certain product using its ID
-
-
-// Search by product name
-
 

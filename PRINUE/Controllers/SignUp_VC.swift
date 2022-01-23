@@ -29,9 +29,6 @@ class SignUp_VC: UIViewController {
         setUpFields()
         setUpProfilePic()
         
-        
-        
-        // Do any additional setup after loading the view.
     }
     
     func validateFields() -> String? {
@@ -49,7 +46,6 @@ class SignUp_VC: UIViewController {
         errorLabel.alpha = 0
     }
     
-    //    var imageData = Data()
     @IBAction func signUpTapped(_ sender: Any) {
         
         
@@ -63,10 +59,6 @@ class SignUp_VC: UIViewController {
             let LastName = lastNameTextFeild.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let Email = emailTextFeild.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let Password = PasswordTextFeild.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            //            let profilePic = profilePicSignup.image
-            //            var urlString = String()
-            
-            
             
             Auth.auth().createUser(withEmail: Email, password: Password) { result, err in
                 if err != nil {
@@ -167,28 +159,7 @@ class SignUp_VC: UIViewController {
         profilePicSignup.addGestureRecognizer(tapGesture)
         
     }
-    //    var urlString = String()
-    //
-    //    func uploadPhoto(data : Data) {
-    //        let uid = Auth.auth().currentUser?.uid
-    //        let storageRef = Storage.storage().reference().child("user")
-    //        storageRef.child("avatar.png")
-    //
-    //        storageRef.putData(data, metadata: nil) { metedata, Error in
-    //            storageRef.downloadURL { url, Error in
-    ////                self.urlString = url.absoluteString
-    //                print()
-    //            }
-    //        }
-    //        }
-    
-    
 }
-
-
-
-
-
 
 
 extension SignUp_VC: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
@@ -207,8 +178,6 @@ extension SignUp_VC: UIImagePickerControllerDelegate,UINavigationControllerDeleg
             image = imageSelected
             profilePicSignup.image = imageSelected
             uploadProfilePhoto(imageSelected) { url in
-                //                let docRef = self.db.collection("users").document(Auth.auth().currentUser!.uid)
-                //                try? docRef.updateData(["profilePic": url])
                 
             }
         }

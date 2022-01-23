@@ -14,7 +14,6 @@ import FirebaseDatabase
 class Profile_VC: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var profilePhoto: UIImageView!
-    @IBOutlet weak var avatarBG: UIImageView!
     @IBOutlet weak var fullNameLbl: UILabel!
     @IBOutlet weak var firstNameUpdateTextfield: UITextField!
     @IBOutlet weak var lastNameUpdateTextfield: UITextField!
@@ -39,25 +38,26 @@ class Profile_VC: UIViewController,UIImagePickerControllerDelegate, UINavigation
     
     func setUpAvatar() {
         profilePhoto.layer.cornerRadius = 60
-        avatarBG.layer.cornerRadius = 65
         profilePhoto.clipsToBounds = true
         profilePhoto.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker))
         profilePhoto.addGestureRecognizer(tapGesture)
         
         let db = Firestore.firestore()
-        let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+        guard let user = Auth.auth().currentUser else { return }
+        let docRef = db.collection("users").document(user.uid)
         docRef.getDocument { snapshot, error in
             let result = snapshot?.data() as! [String: Any]
-            let urlString = result["profilePic"] as! String
-            UserDefaults.standard.set(urlString, forKey: "url")
-            guard let url = URL(string: urlString) else { return }
-            URLSession.shared.dataTask(with: url) { data, _, error in
-                guard error != nil else { return }
-                DispatchQueue.main.async {
-                    self.profilePhoto.image = UIImage(data: data!)
-                }
-            }.resume()
+            do {
+                let user = try snapshot?.data(as: User.self)
+                let urlString = user?.profilePic ?? ""
+                UserDefaults.standard.set(urlString, forKey: "url")
+                self.firstNameUpdateTextfield.text = user?.firstname
+                self.lastNameUpdateTextfield.text = user?.lastname
+                self.emailUpdateTextfield.text = user?.email
+                self.profilePhoto.loadFromUrl(urlString)
+            }
+            catch { print (error.localizedDescription) }
         }
     }
     
@@ -95,7 +95,6 @@ class Profile_VC: UIViewController,UIImagePickerControllerDelegate, UINavigation
             }
         }
         
-        // Update other details like Name and Email
         if let user = Auth.auth().currentUser {
             let docRef = self.db.collection("users").document(user.uid)
             try? docRef.updateData([
@@ -134,16 +133,6 @@ class Profile_VC: UIViewController,UIImagePickerControllerDelegate, UINavigation
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
 

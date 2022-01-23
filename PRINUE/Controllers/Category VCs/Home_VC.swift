@@ -46,12 +46,30 @@ class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         return CGSize(width: categoryCollectionView.frame.width , height: categoryCollectionView.frame.height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == categoryCollectionView {
+        var viewController: UIViewController = UIViewController()
+           switch (indexPath.row) {
+               case 0:
+               viewController = self.storyboard?.instantiateViewController(withIdentifier: "cupID") as! Cups_VC
+               case 1:
+               viewController = self.storyboard?.instantiateViewController(withIdentifier: "clothesID") as! Clothes_VC
+               case 2:
+               viewController = self.storyboard?.instantiateViewController(withIdentifier: "boxID") as! Boxes_VC
+               case 3:
+               viewController = self.storyboard?.instantiateViewController(withIdentifier: "stickersID") as! Stickers_VC
+               default:
+                   print("default")
+           }
+           self.navigationController?.pushViewController(viewController, animated: true)
+    } 
+}
+    
     
     @objc func OnTappedMenu() {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseOut) {
             self.sideMenuView.transform = .identity
             self.menuViewBG.transform = .identity
-//            self.categoryCollectionView.isHidden = true
             
         }
     }
@@ -79,6 +97,7 @@ class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         super.viewDidLoad()
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
+        categoryCollectionView.reloadData()
         setUpSideMenu()
         arrCategory.append(Category(categoryImg:UIImage(named:"cups")!, categoryType: "CUPS", comingSoon: ""))
         arrCategory.append(Category(categoryImg:UIImage(named:"clothes")!, categoryType: "CLOTHES", comingSoon: "Coming Soon"))
@@ -91,7 +110,6 @@ class Home_VC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.5, options: .curveEaseOut) { [self] in
             self.sideMenuView.transform = CGAffineTransform(translationX: -(self.sideMenuView.frame.width), y: 0)
             self.menuViewBG.transform = CGAffineTransform(translationX: -(self.menuViewBG.frame.width), y: 0)
-//            self.categoryCollectionView.isHidden = false
         }
     }
     

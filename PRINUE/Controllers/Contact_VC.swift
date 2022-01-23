@@ -9,14 +9,10 @@ import UIKit
 
 class Contact_VC: UIViewController {
     
-    @IBOutlet weak var backgroundContactView: UIView!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-       
     }
     
     

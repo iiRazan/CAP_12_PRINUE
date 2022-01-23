@@ -7,16 +7,29 @@
 
 import UIKit
 import Alamofire
+import Firebase
+import FirebaseStorage
 
 class Cups_VC: UIViewController, UIDocumentPickerDelegate, UITextViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
     
     
     @IBOutlet weak var uploadPDFbutton: UIButton!
-    
     @IBOutlet weak var cupSizeTXT: UITextField!
+    @IBOutlet weak var notesTextfield: UITextView!
+    @IBOutlet weak var cupView: UIView!
+    @IBOutlet weak var orderNameTXT: UITextField!
+    @IBOutlet weak var cupTypeTXT: UITextField!
+    @IBOutlet weak var qytLBL: UILabel!
+    @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var priceLBL: UILabel!
+    @IBOutlet weak var placeOrderBTN: UIButton!
     
+    let db = Firestore.firestore()
+    let ref = Storage.storage().reference()
     var pickerView = UIPickerView()
     let cupSizeOption = ["3 oz","7 oz","9 oz","12 oz","16 oz"]
+    let cupType = ["Paper","Plastic"]
+    
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -41,9 +54,27 @@ class Cups_VC: UIViewController, UIDocumentPickerDelegate, UITextViewDelegate,UI
         pickerView.dataSource = self
         pickerView.delegate = self
         cupSizeTXT.inputView = pickerView
+        cupViewSetup()
 
+    }
+    
+    
+    func cupViewSetup() {
         
+        notesTextfield.layer.cornerRadius = 20
+        notesTextfield.layer.shadowOffset = CGSize (width: -1, height: 1)
+        notesTextfield.layer.shadowRadius = 1
+        notesTextfield.layer.shadowOpacity = 0.4
+        qytLBL.layer.borderColor = CGColor.init(red: 179, green: 224, blue: 184, alpha: 1)
+        qytLBL.layer.borderWidth = 0.3
         
+    }
+    
+    func uploadOrderInfo() {
+        
+        let order = Order(orderName: orderNameTXT.text!, cupsType: cupTypeTXT.text!, cupSize: cupSizeTXT.text!, qyt: qytLBL.text!, price: priceLBL.text!)
+        
+        let docRef = self.db.collection("orders").document(Auth.auth().currentUser!.uid)
         
     }
     
@@ -59,24 +90,15 @@ class Cups_VC: UIViewController, UIDocumentPickerDelegate, UITextViewDelegate,UI
             to: "https://yourserverurl", method: .post , headers: headers)
             .response { response in
                 if let data = response.data{
-                    //handle the response however you like
+                    
+                        
+                    }
                 }
             }
-        
-        
-        
-        //        uploadPDFbutton.addAction(for: .touchUpInside) {
-        //            let importMenu = UIDocumentPickerViewController(documentTypes: [kUTTypePDF as String], in: .import)
-        //            importMenu.delegate = self
-        //            importMenu.modalPresentationStyle = .formSheet
-        //            self.present(importMenu, animated: true, completion: nil)
-        //        }
-        
-    }
+    
     
     
     @IBAction func uploadFileOnTapped(_ sender: Any) {
-        // TODO: SALIM
         let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .import)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = true

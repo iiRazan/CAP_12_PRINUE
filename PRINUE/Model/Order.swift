@@ -10,8 +10,9 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct Order : Codable {
-    let orderID : String
-    let status : String
-    let products : [DocumentReference]
-    let user : DocumentReference
+    let orderName : String
+    let cupsType : String
+    let cupSize : String
+    let qyt : String
+    let price : String
 }

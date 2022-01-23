@@ -13,22 +13,6 @@ class DataManager {
     
     var allProducts = [Product]()
     
-    static func getAllProduct(collectionName: String) -> [Product] {
-
-        // Example
-        let prod1 = Product(productID: 34, category: "some", price: 34.0, quantity: 2, Size: "Small")
-        let prod2 = Product(productID: 34, category: "some", price: 34.0, quantity: 2, Size: "Small")
-        
-        return [prod1, prod2]
-    }
-    
-    static func getProduct(pid: String) -> Product {
-        
-        let prod2 = Product(productID: 34, category: "some", price: 34.0, quantity: 2, Size: "Small")
-        
-        return prod2
-        
-    }
     
     static func getUserInfo(onSuccess: @escaping (_ user: User) -> Void, onError: @escaping (_ error: Error?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -43,10 +27,8 @@ class DataManager {
             do {
                 if let user = try snapshot?.data(as: User.self) {
                     onSuccess(user)
-                    
                 }
-            }
-            catch { print (error.localizedDescription) }
+            } catch { print (error.localizedDescription) }
         }
         }
     
