@@ -26,7 +26,8 @@ class Cups_VC: UIViewController, UIDocumentPickerDelegate, UITextViewDelegate,UI
     
     let db = Firestore.firestore()
     let ref = Storage.storage().reference()
-    var pickerView = UIPickerView()
+    var sizePickerView = UIPickerView()
+    var typePickerView = UIPickerView()
     let cupSizeOption = ["3 oz","7 oz","9 oz","12 oz","16 oz"]
     let cupType = ["Paper","Plastic"]
     
@@ -37,23 +38,55 @@ class Cups_VC: UIViewController, UIDocumentPickerDelegate, UITextViewDelegate,UI
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return cupSizeOption.count
+        switch pickerView.tag {
+        case 1:
+            return cupSizeOption.count
+        case 2:
+            return cupType.count
+        default:
+            return 1
+        }
+                    
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        cupSizeOption[row]
+        switch pickerView.tag {
+        case 1:
+            return cupSizeOption[row]
+        case 2:
+            return cupType[row]
+        default:
+            return "Not Found"
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        cupSizeTXT.text = cupSizeOption[row]
-        cupSizeTXT.resignFirstResponder()
+        switch pickerView.tag {
+        case 1:
+            cupSizeTXT.text = cupSizeOption[row]
+            cupSizeTXT.resignFirstResponder()
+        case 2:
+            cupTypeTXT.text = cupType[row]
+            cupTypeTXT.resignFirstResponder()
+        default:
+            return
+        }
+        
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pickerView.dataSource = self
-        pickerView.delegate = self
-        cupSizeTXT.inputView = pickerView
+        sizePickerView.dataSource = self
+        sizePickerView.delegate = self
+        typePickerView.dataSource = self
+        typePickerView.delegate = self
+        cupSizeTXT.inputView = sizePickerView
+        cupTypeTXT.inputView = typePickerView
+        
+        sizePickerView.tag = 1
+        typePickerView.tag = 2
+        
         cupViewSetup()
 
     }
@@ -72,31 +105,49 @@ class Cups_VC: UIViewController, UIDocumentPickerDelegate, UITextViewDelegate,UI
     
     func uploadOrderInfo() {
         
-        let order = Order(orderName: orderNameTXT.text!, cupsType: cupTypeTXT.text!, cupSize: cupSizeTXT.text!, qyt: qytLBL.text!, price: priceLBL.text!)
+       
         
-        let docRef = self.db.collection("orders").document(Auth.auth().currentUser!.uid)
+        let userRef = self.db.collection("users").document(Auth.auth().currentUser!.uid)
+        
+        let order = Order(orderName: orderNameTXT.text!, cupsType: cupTypeTXT.text!, cupSize: cupSizeTXT.text!, qyt: qytLBL.text!, price: priceLBL.text!, forUser: userRef)
+        
+        do { let orderRef = try db.collection("orders").addDocument(from: order, completion: { err in
+            if err == nil {
+               print("Orde Save Successfully")
+            }
+        })
+            
+            userRef.setData(["orders" : FieldValue.arrayUnion([orderRef])], merge: true)
+            
+            
+        } catch {
+            
+        }
         
     }
     
-    fileprivate func uploadDocument(_ file: Data,filename : String,handler : @escaping (String) -> Void) {
-        let headers: HTTPHeaders = [
-            "Content-type": "multipart/form-data"
-        ]
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         
-        AF.upload(
-            multipartFormData: { multipartFormData in
-                multipartFormData.append(file, withName: "upload_data" , fileName: filename, mimeType: "application/pdf")
-            },
-            to: "https://yourserverurl", method: .post , headers: headers)
-            .response { response in
-                if let data = response.data{
-                    
-                        
-                    }
-                }
-            }
-    
-    
+       print("Local URL of selected file \(url)")
+        
+       guard let pdfData = try? Data(contentsOf: url) else {return}
+        
+       let firebaseStorageReferecne = Storage.storage().reference()
+       let pdfReference = firebaseStorageReferecne.child("/PDFs/\(UUID().uuidString)")
+        
+       let meta = StorageMetadata()
+       meta.contentType = "application/pdf"
+        
+       let uploadTask = pdfReference.putData(pdfData, metadata: meta)
+        
+       uploadTask.observe(.success, handler: { _ in
+         pdfReference.downloadURL { onlineURL, error in
+            
+           print(onlineURL?.absoluteString)
+         }
+       })
+     }
+   
     
     @IBAction func uploadFileOnTapped(_ sender: Any) {
         let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .import)
@@ -104,6 +155,18 @@ class Cups_VC: UIViewController, UIDocumentPickerDelegate, UITextViewDelegate,UI
         documentPicker.allowsMultipleSelection = true
         documentPicker.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(documentPicker, animated: true, completion: nil)
+        
+    }
+    
+    
+    @IBAction func stepperOnTapped(_ sender: UIStepper) {
+        qytLBL.text = String(sender.value)
+        priceLBL.text = String((sender.value)*2)
+    }
+    
+    
+    @IBAction func placeOrderOnTapped(_ sender: Any) {
+        uploadOrderInfo()
         
     }
     

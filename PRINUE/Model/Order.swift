@@ -15,4 +15,6 @@ struct Order : Codable {
     let cupSize : String
     let qyt : String
     let price : String
+    let pdfFile : String? = String()
+    let forUser : DocumentReference
 }

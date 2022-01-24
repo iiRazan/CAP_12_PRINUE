@@ -16,6 +16,5 @@ struct User : Codable {
     let email : String
     let profilePic : String
     let isAdmin : Bool
-//    let orders : [Order]
     var orders : [DocumentReference]
 }
